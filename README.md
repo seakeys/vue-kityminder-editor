@@ -37,5 +37,3 @@ importData:[
     }
 ]
 ```
-
-For a detailed explanation on how things work, check out the [guide](https://gitee.com/chenhaifei/vue-kityminder.git) and [docs for vue-kityminder](https://gitee.com/chenhaifei/vue-kityminder.git).
