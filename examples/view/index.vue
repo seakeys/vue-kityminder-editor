@@ -1,6 +1,14 @@
 <template>
 <div>
-  <minder ref="minder" :importData="importData" @exportData="exportData"></minder>
+  <minder ref="minder" 
+  :importData="importData"
+  @exportData="exportData"
+  AccessKey='cTVaSHuahYgy-4Qvbo5LewAd5Add5625w2LSuF_5' 
+  SecretKey='ZEJvO2-zNNE07p8DpPIBtyejt_BYf2SxZ7pbsMR7' 
+  Domain='http://puo3hd5oc.bkt.clouddn.com' 
+  scope='jm'
+  :isImageUpload='true'
+  ></minder>
 </div>
 </template>
 <script>

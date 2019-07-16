@@ -25,6 +25,8 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.3.2",
+    "qiniu": "^7.2.2",
+    "qiniu-js": "^2.5.4",
     "vue": "^2.6.10"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 <template>
   <div class="minder-editor-container">
-    <div class="tools" @click="minder.enable()">
+    <div class="tools">
+      <imageUpload  :minder='minder' :AccessKey='AccessKey' :SecretKey='SecretKey' :Domain='Domain' :scope='scope' v-if='isImageUpload'/>
       <button @click="exportHandle(0)">导出png图片</button>
       <!-- <button @click="exportHandle(1)">导出pdf格式</button> -->
       <button @click="minder.execCommand('camera', minder.getRoot(), 600);">重新定位</button>
@@ -25,12 +26,33 @@
   // import jsPDF from 'jspdf';
   import '../../../examples/styles/minder.css'
   // import "hotbox-ui/less/hotbox.less";
+  import imageUpload from '../imageUpload'
   export default {
     name: 'mind-editor',
     props: {
       importData: {
         type: Array,
         default:() => []
+      },
+      AccessKey:{
+          type:String,
+          default:''
+      },
+      SecretKey:{
+          type:String,
+          default:''
+      },
+      Domain:{
+          type:String,
+          default:''
+      },
+      scope:{
+          type:String,
+          default:''
+      },
+      isImageUpload:{
+        type:Boolean,
+        default:true
       }
     },
     data() {
@@ -112,6 +134,9 @@
         this.minder.importJson(this.rootData)
         window.localStorage.__dev_minder_content = JSON.stringify(this.minder.exportJson());
       }
+    },
+    components:{
+      imageUpload
     }
   }
 </script>
@@ -127,6 +152,10 @@
     right: 20px;
     color: red;
     z-index: 100;
+    display: flex;
+    button,select{
+      margin-left: 8px;
+    }
   }
   .tabBar{
     position: fixed;
