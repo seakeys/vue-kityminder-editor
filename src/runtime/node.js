@@ -85,27 +85,27 @@ define(function(require, exports, module) {
             minder.fire('exportNodeData');
         }
 
-        //main.button({
-        //    position: 'ring',
-        //    key: '/',
-        //    action: function(){
-        //        if (!minder.queryCommandState('expand')) {
-        //            minder.execCommand('expand');
-        //        } else if (!minder.queryCommandState('collapse')) {
-        //            minder.execCommand('collapse');
-        //        }
-        //    },
-        //    enable: function() {
-        //        return minder.queryCommandState('expand') != -1 || minder.queryCommandState('collapse') != -1;
-        //    },
-        //    beforeShow: function() {
-        //        if (!minder.queryCommandState('expand')) {
-        //            this.$button.children[0].innerHTML = '展开';
-        //        } else {
-        //            this.$button.children[0].innerHTML = '收起';
-        //        }
-        //    }
-        //})
+        main.button({
+           position: 'ring',
+           key: '/',
+           action: function(){
+               if (!minder.queryCommandState('expand')) {
+                   minder.execCommand('expand');
+               } else if (!minder.queryCommandState('collapse')) {
+                   minder.execCommand('collapse');
+               }
+           },
+           enable: function() {
+               return minder.queryCommandState('expand') != -1 || minder.queryCommandState('collapse') != -1;
+           },
+           beforeShow: function() {
+               if (!minder.queryCommandState('expand')) {
+                   this.$button.children[0].innerHTML = '展开';
+               } else {
+                   this.$button.children[0].innerHTML = '收起';
+               }
+           }
+        })
     }
 
     return module.exports = NodeRuntime;
