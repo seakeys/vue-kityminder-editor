@@ -11,7 +11,7 @@ define(function(require, exports, module) {
     var Hotbox = require('../hotbox');
     var Debug = require('../tool/debug');
     var debug = new Debug('drag');
-
+    return
     function DragRuntime() {
         var fsm = this.fsm;
         var minder = this.minder;

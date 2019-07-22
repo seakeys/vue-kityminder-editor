@@ -179,9 +179,9 @@ define(function(require, exports, module) {
 		 * @Editor: Naixor
 		 * @Date: 2015.9.24
 		 */
-		document.addEventListener('copy', beforeCopy);
-        document.addEventListener('cut', beforeCut);
-        document.addEventListener('paste', beforePaste);	
+		// document.addEventListener('copy', beforeCopy);
+        // document.addEventListener('cut', beforeCut);
+        // document.addEventListener('paste', beforePaste);	
 	}
 
 	return module.exports = ClipboardRuntime;
