@@ -111,7 +111,7 @@ define(function(require, exports, module) {
                 exit: exit,
                 enter: enter
             };
-
+            // console.log(handler)
             handlers.push(handler);
         };
     }

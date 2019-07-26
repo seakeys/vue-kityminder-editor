@@ -8,8 +8,7 @@
  */
 define(function(require, exports, module) {
 
-    var Hotbox = require('../hotbox');
-
+    // var Hotbox = require('../hotbox');
 
     // Nice: http://unixpapa.com/js/key.html
     function isIntendToInput(e) {
@@ -71,8 +70,11 @@ define(function(require, exports, module) {
              */
             switch (e.type) {
                 case 'keydown': {
-                    // debugger
                     if (minder.getSelectedNode()) {
+                        let svgBox = container.children[0].children[1].children[0]
+                        let svgHeight = svgBox.getBBox().height + 100
+                        container.style.height = svgHeight + 'px'
+                        svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2) + 25} )`)
                         if (isIntendToInput(e)) {
                             return fsm.jump('input', 'user-input');
                         };
@@ -91,14 +93,14 @@ define(function(require, exports, module) {
         });
 
         // hotbox -> normal
-        receiver.listen('hotbox', function(e) {
-            receiver.disable();
-            e.preventDefault();
-            var handleResult = hotbox.dispatch(e);
-            if (hotbox.state() == Hotbox.STATE_IDLE && fsm.state() == 'hotbox') {
-                return fsm.jump('normal', 'hotbox-idle');
-            }
-        });
+        // receiver.listen('hotbox', function(e) {
+        //     receiver.disable();
+        //     e.preventDefault();
+        //     var handleResult = hotbox.dispatch(e);
+        //     if (hotbox.state() == Hotbox.STATE_IDLE && fsm.state() == 'hotbox') {
+        //         return fsm.jump('normal', 'hotbox-idle');
+        //     }
+        // });
 
         // input => normal
         receiver.listen('input', function(e) {
@@ -106,7 +108,6 @@ define(function(require, exports, module) {
             if (e.type == 'keydown') {
                 if (e.is('Enter')) {
                     e.preventDefault();
-                    // debugger
                     return fsm.jump('normal', 'input-commit');
                 }
                 if (e.is('Esc')) {
@@ -136,51 +137,50 @@ define(function(require, exports, module) {
         /// 右键呼出热盒
         /// 判断的标准是：按下的位置和结束的位置一致
         //////////////////////////////////////////////
-        var downX, downY;
-        var MOUSE_RB = 2; // 右键
+        // var downX, downY;
+        // var MOUSE_RB = 2; // 右键
 
-        container.addEventListener('mousedown', function(e) {
-             return // 禁用热盒模式
-            if (e.button == MOUSE_RB) {
-                e.preventDefault();
-            }
-            if (fsm.state() == 'hotbox') {
-                hotbox.active(Hotbox.STATE_IDLE);
-                fsm.jump('normal', 'blur');
-            } else if (fsm.state() == 'normal' && e.button == MOUSE_RB) {
-                downX = e.clientX;
-                downY = e.clientY;
-            }
-        }, false);
+        // container.addEventListener('mousedown', function(e) {
+        //     if (e.button == MOUSE_RB) {
+        //         e.preventDefault();
+        //     }
+        //     if (fsm.state() == 'hotbox') {
+        //         hotbox.active(Hotbox.STATE_IDLE);
+        //         fsm.jump('normal', 'blur');
+        //     } else if (fsm.state() == 'normal' && e.button == MOUSE_RB) {
+        //         downX = e.clientX;
+        //         downY = e.clientY;
+        //     }
+        // }, false);
 
-        container.addEventListener('mousewheel', function(e) {
-            if (fsm.state() == 'hotbox') {
-                hotbox.active(Hotbox.STATE_IDLE);
-                fsm.jump('normal', 'mousemove-blur');
-            }
-        }, false);
+        // container.addEventListener('mousewheel', function(e) {
+        //     if (fsm.state() == 'hotbox') {
+        //         hotbox.active(Hotbox.STATE_IDLE);
+        //         fsm.jump('normal', 'mousemove-blur');
+        //     }
+        // }, false);
 
-        container.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
+        // container.addEventListener('contextmenu', function(e) {
+        //     e.preventDefault();
+        // });
 
-        container.addEventListener('mouseup', function(e) {
-            if (fsm.state() != 'normal') {
-                return;
-            }
-            if (e.button != MOUSE_RB || e.clientX != downX || e.clientY != downY) {
-                return;
-            }
-            if (!minder.getSelectedNode()) {
-                return;
-            }
-            fsm.jump('hotbox', 'content-menu');
-        }, false);
+        // container.addEventListener('mouseup', function(e) {
+        //     if (fsm.state() != 'normal') {
+        //         return;
+        //     }
+        //     if (e.button != MOUSE_RB || e.clientX != downX || e.clientY != downY) {
+        //         return;
+        //     }
+        //     if (!minder.getSelectedNode()) {
+        //         return;
+        //     }
+        //     fsm.jump('hotbox', 'content-menu');
+        // }, false);
 
         // 阻止热盒事件冒泡，在热盒正确执行前导致热盒关闭
-        hotbox.$element.addEventListener('mousedown', function(e) {
-            e.stopPropagation();
-        });
+        // hotbox.$element.addEventListener('mousedown', function(e) {
+        //     e.stopPropagation();
+        // });
     }
 
     return module.exports = JumpingRuntime;

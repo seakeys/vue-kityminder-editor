@@ -20,12 +20,15 @@ define(function(require, exports, module) {
         // 渲染，初始化
         minder.renderTo(this.selector);
         minder.setTheme(null);
-        minder.select(minder.getRoot(), true);
-        minder.execCommand('text', '中心主题');
+        // minder.select(minder.getRoot(), false);
+        // minder.execCommand('text', '中心主题');
+
+        // console.log(this.selector.children[0].children[1].getBBox())
 
         // 导出给其它 Runtime 使用
         this.minder = minder;
     }
+    
 
     return module.exports = MinderRuntime;
 });

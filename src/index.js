@@ -1,5 +1,7 @@
-import kity from 'kity';
-import kityminder from 'kityminder-core';
+// import kity from 'kity';
+// import kityminder from 'kityminder-core';
+import '../static/kity'
+import '../static/kityminder.core'
 import Editor from './components/editor';
 import './module/imageicon'
 
@@ -11,7 +13,7 @@ const install = function(Vue, opts = {}) {
   Object.keys(MindEditor).forEach((key) => {
     Vue.component(key, MindEditor[key]);
   });
-};
+}
 
 // auto install
 if(typeof window !== 'undefined' && window.Vue) {

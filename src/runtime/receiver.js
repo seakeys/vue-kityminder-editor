@@ -15,7 +15,7 @@ define(function(require, exports, module) {
         var fsm = this.fsm;
         var minder = this.minder;
         var me = this;
-
+      
         // 接收事件的 div
         var element = document.createElement('div');
         element.contentEditable = true;

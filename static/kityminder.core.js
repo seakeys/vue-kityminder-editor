@@ -1868,11 +1868,6 @@ _p[18] = {
                  */
                     setTimeout(() =>  {
                         minder.fire("layoutallfinish");
-                        // let svg = document.getElementById('kity_g_8')
-                        // let svg1 = document.getElementById('kity_svg_6')
-                        // svg1.setAttribute('height', svg.getBBox().height)
-                        // this.execCommand("camera", this.getRoot());
-                        console.log(this.getRoot())
                     }, 0);
                 });
                 return this.fire("layout");
@@ -4783,11 +4778,9 @@ _p[45] = {
             dragStart: function(position) {
                 // 只记录开始位置，不马上开启拖放模式
                 // 这个位置同时是拖放范围收缩时的焦点位置（中心）
-                return
                 this._startPosition = position;
             },
             dragMove: function(position) {
-                return
                 // 启动拖放模式需要最小的移动距离
                 var DRAG_MOVE_THRESHOLD = 10;
                 if (!this._startPosition) return;
@@ -4815,7 +4808,6 @@ _p[45] = {
                 // console.log()
             },
             dragEnd: function() {
-                return
                 this._startPosition = null;
                 this._dragPosition = null;
                 if (!this._dragMode) {
@@ -7545,6 +7537,7 @@ _p[62] = {
                     });
                     return this;
                 }
+                // console.log(position.round())
                 this._minder.getRenderContainer().setTranslate(position.round());
                 this._minder.fire("viewchange");
             },
@@ -7789,7 +7782,7 @@ _p[62] = {
                         if (focus.top < view.top) {
                             dy += view.top - focus.top + space;
                         }
-                        if (dx || dy) dragger.move(new kity.Point(dx, dy), 100);
+                        // if (dx || dy) dragger.move(new kity.Point(dx, dy), 100);
                     }
                 }
             };

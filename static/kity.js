@@ -7333,9 +7333,7 @@ _p[61] = {
                 return this._applyTransform();
             },
             setTranslate: function(t) {
-                // console.log(t)
                 this.transform.translate = t !== null && slice.call(arguments) || null;
-                // console.log(this.transform.translate,11)
                 return this._applyTransform();
             },
             setRotate: function(r) {

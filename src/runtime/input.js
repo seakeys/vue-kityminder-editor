@@ -16,7 +16,7 @@ define(function(require, exports, module) {
     function InputRuntime() {
         var fsm = this.fsm;
         var minder = this.minder;
-        var hotbox = this.hotbox;
+        // var hotbox = this.hotbox;
         var receiver = this.receiver;
         var receiverElement = receiver.element;
         var isGecko = window.kity.Browser.gecko;
@@ -24,7 +24,7 @@ define(function(require, exports, module) {
         // setup everything to go
         setupReciverElement();
         setupFsm();
-        setupHotbox();
+        // setupHotbox();
 
         // expose editText()
         this.editText = editText;
@@ -71,9 +71,9 @@ define(function(require, exports, module) {
 
         // let the receiver follow the current selected node position
         function setupReciverElement() {
-            if (debug.flaged) {
-                receiverElement.classList.add('debug');
-            }
+            // if (debug.flaged) {
+            //     receiverElement.classList.add('debug');
+            // }
 
             receiverElement.onmousedown = function(e) {
                 e.stopPropagation();
@@ -92,17 +92,17 @@ define(function(require, exports, module) {
 
 
         // edit entrance in hotbox
-        function setupHotbox() {
-            hotbox.state('main').button({
-                position: 'center',
-                label: '编辑',
-                key: 'F2',
-                enable: function() {
-                    return minder.queryCommandState('text') != -1;
-                },
-                action: editText
-            });
-        }
+        // function setupHotbox() {
+        //     hotbox.state('main').button({
+        //         position: 'center',
+        //         label: '编辑',
+        //         key: 'F2',
+        //         enable: function() {
+        //             return minder.queryCommandState('text') != -1;
+        //         },
+        //         action: editText
+        //     });
+        // }
 
 
         /**
@@ -133,6 +133,7 @@ define(function(require, exports, module) {
             if (isGecko) {
                 receiver.fixFFCaretDisappeared();
             };
+            // debugger
             fsm.jump('input', 'input-request');
             receiver.selectAll();
         }
@@ -385,7 +386,7 @@ define(function(require, exports, module) {
                     var box = focusNode.getRenderBox('TextRenderer');
                     receiverElement.style.left = Math.round(box.x) + 'px';
                     receiverElement.style.top = (debug.flaged ? Math.round(box.bottom + 30) : Math.round(box.y)) + 'px';
-                    //receiverElement.focus();
+                    // receiverElement.focus();
                     planed.timer = 0;
                 });
             }

@@ -13,7 +13,7 @@ define(function(require, exports, module) {
      */
     function ContainerRuntime() {
         var container;
-
+        
 	    if (typeof(this.selector) == 'string') {
 		    container = document.querySelector(this.selector);
 	    } else {

@@ -108,9 +108,12 @@
       this.minder = new Editor(getId).minder;
       this.rootData.root = this.importData
       this.minder.importJson(this.rootData)
-      this.minder.removeAllSelectedNodes()
-      // this.minder._viewDragger.moveTo(new kity.Point(0, 0));
-      // console.log(this.minder.disable())
+      setTimeout(() => {
+        let svgBox = getId.children[0].children[1].children[0]
+        let svgHeight = svgBox.getBBox().height + 100
+        getId.style.height = svgHeight + 'px'
+        svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2) + 25} )`)
+      },600)
       this.minder.on('contentchange', (e) => {
         this.$emit('exportData',this.minder.exportJson().root,this.index)
         // this.minder.execCommand('ResetLayout');
@@ -146,7 +149,9 @@
 <style lang="less" scoped>
 .minder-editor-container{
   .km-editor{
-    height:60vh;
+    // height: 0;
+    transition:height 0.3s;
+	  -webkit-transition:height 0.3s; /* Safari */
   }
   
   .textAre{

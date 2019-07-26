@@ -8,15 +8,15 @@
  */
 define(function(require, exports, module) {
     var Hotbox = require('../hotbox');
-
+    
     function HotboxRuntime() {
         var fsm = this.fsm;
         var minder = this.minder;
         var receiver = this.receiver;
         var container = this.container;
-
+        
         var hotbox = new Hotbox(container);
-
+        // console.log(Hotbox)
         hotbox.setParentFSM(fsm);
 
         fsm.when('normal -> hotbox', function(exit, enter, reason) {
