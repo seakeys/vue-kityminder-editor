@@ -1,17 +1,12 @@
 <template>
 <div>
-  <div >
+  <div style="width:900px">
     <minder
       v-for="(item,index) in importData" 
       :key="index"
       :importData="item"
       :index='index'
       @exportData="exportData"
-      AccessKey='cTVaSHuahYgy-4Qvbo5LewAd5Add5625w2LSuF_5' 
-      SecretKey='ZEJvO2-zNNE07p8DpPIBtyejt_BYf2SxZ7pbsMR7' 
-      Domain='http://puo3hd5oc.bkt.clouddn.com' 
-      scope='jm'
-      :isImageUpload='true'
     ></minder>
   </div>
 </div>

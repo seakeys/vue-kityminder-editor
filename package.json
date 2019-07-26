@@ -1,5 +1,5 @@
 {
-  "name": "vue-kityminder-editor",
+  "name": "vue-kityminder-editor-v2",
   "version": "0.0.2",
   "description": "vue-kityminder-editor",
   "author": "chenhaifei <649719596@qq.com>",
@@ -18,8 +18,6 @@
     "core-js": "^2.4.1",
     "hotbox-ui": "^1.0.0",
     "jspdf": "^1.5.3",
-    "kity": "^2.0.4",
-    "kityminder-core": "^1.4.50",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "postcss-import": "^11.0.0",
