@@ -1,38 +1,18 @@
 <template>
   <div class="minder-editor-container">
-    <!-- <div class="tools">
-      <imageUpload  :minder='minder' :AccessKey='AccessKey' :SecretKey='SecretKey' :Domain='Domain' :scope='scope' v-if='isImageUpload'/>
-      <button @click="exportHandle(0)">导出png图片</button>
-      <button @click="exportHandle(1)">导出pdf格式</button>
-      <button @click="minder.execCommand('camera', minder.getRoot(), 600);">重新定位</button>
-      <button @click="minder.execCommand('zoomIn')">放大</button>
-      <button @click="minder.execCommand('zoomOut');">缩小</button>
-      <select @change="minder.execCommand('template', rootData.template);" v-model="rootData.template">
-        <option v-for="(item, index) in templateList" :key="index" :value="index">{{item}}</option>
-      </select>
-      <select @change="minder.execCommand('theme', rootData.theme);" v-model="rootData.theme">
-        <option v-for="(item, index) in themeList" :key="index" :value="index">{{item}}</option>
-      </select>
-    </div>
-    <div class="tabBar">
-      <button v-for="(item, index) in importData" :key="index" :class="{active:navIndex == index}" @click="onChange(index)">{{item.data.text}}</button>
-    </div> -->
     <div :id="`minder-editor-${index}`"></div>
     <div class="textAre">
-      <span>文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签
-      文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签
-      文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签
-      文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签文本标签</span>
+      <span>{{text}}</span>
     </div>
   </div>
 </template>
 
 <script>
-  const Editor = require('../../editor')
-  // import jsPDF from 'jspdf';
-  import '../../../examples/styles/minder.css'
+  import '../../../static/kity'
+  import '../../../static/kityminder.core'
+  import '../../styles/editor.css'
+  import Editor from '../../editor'
   import "hotbox-ui/less/hotbox.less";
-  import imageUpload from '../imageUpload'
   export default {
     name: 'mind-editor',
     props: {
@@ -41,6 +21,7 @@
         default:() => {}
       },
       index:[Number],
+      text: [String],
       AccessKey:{
           type:String,
           default:''
@@ -99,7 +80,7 @@
         rootData:{
           root:{},
           template:'right',
-          theme:'snow'
+          theme:'fresh-blue'
         },
       };
     },
@@ -112,84 +93,41 @@
         let svgBox = getId.children[0].children[1].children[0]
         let svgHeight = svgBox.getBBox().height + 100
         getId.style.height = svgHeight + 'px'
-        svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2) + 25} )`)
+        svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2)} )`)
       },600)
       this.minder.on('contentchange', (e) => {
         this.$emit('exportData',this.minder.exportJson().root,this.index)
-        // this.minder.execCommand('ResetLayout');
-        // let svgCss = getId.children[0].children[1].getBBox()
-        // getId.style.height = svgCss.height + 100 + 'px'
       })
     },
     methods:{
-      exportHandle(n) {
-        if(n == 0){
-          this.minder.exportData('png').then((content) => {
-            const ele = document.createElement('a')
-            const evt = document.createEvent('HTMLEvents')
-            evt.initEvent("click", true, true)
-            ele.download = this.rootData.root.data.text || '无标题'
-            ele.href = content
-            ele.click()
-          })
-        }else if(n == 1) {
-          this.minder.exportData('png').then((content) => {
-            var doc = new jsPDF()
-            doc.addImage(content, 'PNG', 0, 0, 0, 0);
-            doc.save(`${this.rootData.root.data.text || '无标题'}.pdf`);
-          })
-        }
-      }
-    },
-    components:{
-      imageUpload
+      
     }
   }
 </script>
 <style lang="less" scoped>
 .minder-editor-container{
   .km-editor {
-    // height: 0;
-    transition:height 0.3s;
-	  -webkit-transition:height 0.3s; /* Safari */
+    transition:height 0.1s;
+    -webkit-transition:height 0.1s; /* Safari */
+    background: #fff !important;
   }
-  
   .textAre{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 900px;
+    position: relative;
     padding-bottom: 20px;
-    color: #fff;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowQzg5QTQ0NDhENzgxMUUzOENGREE4QTg0RDgzRTZDNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowQzg5QTQ0NThENzgxMUUzOENGREE4QTg0RDgzRTZDNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMwOEQ1NDRGOEQ3NzExRTM4Q0ZEQThBODREODNFNkM3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMwOEQ1NDUwOEQ3NzExRTM4Q0ZEQThBODREODNFNkM3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+e9P33AAAACVJREFUeNpisXJ0YUACTAyoAMr/+eM7EGGRZ4FQ7BycEAZAgAEAHbEGtkoQm/wAAAAASUVORK5CYII=') repeat rgb(58, 65, 68);
+    color: #333;
+    background: #fff;
+    // background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowQzg5QTQ0NDhENzgxMUUzOENGREE4QTg0RDgzRTZDNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowQzg5QTQ0NThENzgxMUUzOENGREE4QTg0RDgzRTZDNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkMwOEQ1NDRGOEQ3NzExRTM4Q0ZEQThBODREODNFNkM3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkMwOEQ1NDUwOEQ3NzExRTM4Q0ZEQThBODREODNFNkM3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+e9P33AAAACVJREFUeNpisXJ0YUACTAyoAMr/+eM7EGGRZ4FQ7BycEAZAgAEAHbEGtkoQm/wAAAAASUVORK5CYII=') repeat rgb(58, 65, 68);
     span{
-      max-width: 600px;
-      // margin-left: 10%;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -300px;
+      display: block;
+      width: 600px;
+      text-align: left;
     }
-  }
-  .tools{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    color: red;
-    z-index: 100;
-    display: flex;
-    button,select{
-      margin-left: 8px;
-    }
-  }
-  .tabBar{
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translate(0,-50%);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
   }
 
-  .tabBar button {
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
 }
 </style>

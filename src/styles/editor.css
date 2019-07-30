@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.km-editor {
+  overflow: hidden;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.km-editor>.mask {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: transparent
+}
+
+.km-editor>.receiver {
+  position: absolute;
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+  left: 0;
+  top: 0;
+  padding: 3px 5px;
+  margin-left: -3px;
+  margin-top: -5px;
+  max-width: 300px;
+  width: auto;
+  font-size: 14px;
+  line-height: 1.4em;
+  min-height: 1.4em;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  border: none;
+  -webkit-user-select: text;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1000
+}
+
+.km-editor>.receiver.debug {
+  opacity: 1;
+  outline: 1px solid green;
+  background: 0 0;
+  z-index: 0
+}
+
+.km-editor>.receiver.input {
+  pointer-events: all;
+  opacity: 1;
+  z-index: 999;
+  background: #fff;
+  outline: 0
+}
+
+div.minder-editor-container {
+  font-family: Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif
+}
+
+.minder-editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
+
+.minder-viewer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
+
+.control-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  bottom: 0;
+  border-left: 1px solid #ccc
+}
+
+.minder-divider {
+  position: absolute;
+  top: 0;
+  right: 250px;
+  bottom: 0;
+  width: 2px;
+  background-color: #fbfbfb;
+  cursor: ew-resize
+}

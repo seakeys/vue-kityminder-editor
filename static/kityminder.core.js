@@ -7586,12 +7586,12 @@ _p[62] = {
                         e.preventDefault();
                     }
                     if (!isTempDrag) return;
-                    var offset = kity.Vector.fromPoints(lastPosition, e.getPosition("view"));
-                    if (offset.length() > 10) {
-                        this.setStatus("hand", true);
-                        var paper = dragger._minder.getPaper();
-                        paper.setStyle("cursor", "-webkit-grabbing");
-                    }
+                    // var offset = kity.Vector.fromPoints(lastPosition, e.getPosition("view"));
+                    // if (offset.length() > 10) {
+                    //     this.setStatus("hand", true);
+                    //     var paper = dragger._minder.getPaper();
+                    //     paper.setStyle("cursor", "-webkit-grabbing");
+                    // }
                 }).on("hand.beforemousedown hand.beforetouchstart", function(e) {
                     // 已经被用户打开拖放模式
                     if (dragger.isEnabled()) {

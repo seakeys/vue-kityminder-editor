@@ -7,12 +7,13 @@
       :importData="item"
       :index='index'
       @exportData="exportData"
+      text="456789123"
     ></minder>
   </div>
 </div>
 </template>
 <script>
-
+  import minder from './components/editor/index'
   export default {
     data() {
       return {
@@ -70,6 +71,9 @@
       exportData(item,index) {
         // console.log(item)
       }
+    },
+    components:{
+      minder
     }
   };
 </script>

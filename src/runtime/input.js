@@ -135,6 +135,7 @@ define(function(require, exports, module) {
             };
             // debugger
             fsm.jump('input', 'input-request');
+            // debugger
             receiver.selectAll();
         }
 

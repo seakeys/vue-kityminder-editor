@@ -101,7 +101,6 @@ define(function(require, exports, module) {
         });
 
         minder.on('mousemove', function(e) {
-
             // if (fsm.state() === 'drag' && flag == MOUSE_HAS_DOWN && minder.getSelectedNode()
             //     && (Math.abs(downX - e.originEvent.clientX) > BOUND_CHECK
             //         || Math.abs(downY - e.originEvent.clientY) > BOUND_CHECK)) {
@@ -147,11 +146,11 @@ define(function(require, exports, module) {
                 move(false);
                 return fsm.jump('normal', 'drag-finish');
             }else if(fsm.state() === 'normal' && minder.getSelectedNode()) {
+                let svgBox = container.children[0].children[1].children[0]
                 setTimeout(() => {
-                    let svgBox = container.children[0].children[1].children[0]
                     let svgHeight = svgBox.getBBox().height + 100
                     container.style.height = svgHeight + 'px'
-                    svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2) + 25} )`)
+                    svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2)} )`)
                 },600)
             }
         }, false);

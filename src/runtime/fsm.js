@@ -56,6 +56,7 @@ define(function(require, exports, module) {
             for (i = 0; i < handlers.length; i++) {
                 handler = handlers[i];
                 if (handlerConditionMatch(handler.condition, 'after', oldState, newState)) {
+                    // debugger
                     handler.apply(null, notify);
                 }
             }

@@ -72,9 +72,11 @@ define(function(require, exports, module) {
                 case 'keydown': {
                     if (minder.getSelectedNode()) {
                         let svgBox = container.children[0].children[1].children[0]
-                        let svgHeight = svgBox.getBBox().height + 100
-                        container.style.height = svgHeight + 'px'
-                        svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2) + 25} )`)
+                        setTimeout(() => {
+                            let svgHeight = svgBox.getBBox().height + 100
+                            container.style.height = svgHeight + 'px'
+                            svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2)} )`)
+                        })
                         if (isIntendToInput(e)) {
                             return fsm.jump('input', 'user-input');
                         };
