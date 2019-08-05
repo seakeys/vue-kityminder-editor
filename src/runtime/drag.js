@@ -6,7 +6,7 @@
  * @author: techird
  * @copyright: Baidu FEX, 2014
  * 
- * click 当用户点击某个对象时调用的事件句柄。 
+ *  click 当用户点击某个对象时调用的事件句柄。 
  *  contextmenu 在用户点击鼠标右键打开上下文菜单时触发 
  *  dblclick 当用户双击某个对象时调用的事件句柄。 
  *  mousedown 鼠标按钮被按下。 
@@ -15,7 +15,7 @@
  *  mousemove 鼠标被移动。 
  *  mouseover 鼠标移到某元素之上。 
  *  mouseout 鼠标从某元素移开。 
- * mouseup 鼠标按键被松开。
+ *  mouseup 鼠标按键被松开。
  */
 define(function(require, exports, module) {
 
@@ -101,6 +101,8 @@ define(function(require, exports, module) {
         });
 
         minder.on('mousemove', function(e) {
+            // fsm.jump('normal', 'drag-finish');
+            // console.log(e)
             // if (fsm.state() === 'drag' && flag == MOUSE_HAS_DOWN && minder.getSelectedNode()
             //     && (Math.abs(downX - e.originEvent.clientX) > BOUND_CHECK
             //         || Math.abs(downY - e.originEvent.clientY) > BOUND_CHECK)) {
@@ -140,7 +142,6 @@ define(function(require, exports, module) {
         });
 
         window.addEventListener('mouseup', function () { // 鼠标被松开
-            // console.log(fsm.state())
             flag = MOUSE_HAS_UP;
             if (fsm.state() === 'drag') {
                 move(false);

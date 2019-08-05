@@ -7,7 +7,6 @@
       :importData="item"
       :index='index'
       @exportData="exportData"
-      text="456789123"
     ></minder>
   </div>
 </div>

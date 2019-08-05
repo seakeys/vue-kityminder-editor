@@ -931,7 +931,7 @@ _p[12] = {
          */
             importJson: function(json) {
                 if (!json) return;
-                /**
+            /**
              * @event preimport
              * @for Minder
              * @when 导入数据之前
@@ -4765,7 +4765,7 @@ _p[45] = {
                 }
             }
         });
-        // 对拖动对象的一个替代盒子，控制整个拖放的逻辑，包括：
+        //    对拖动对象的一个替代盒子，控制整个拖放的逻辑，包括：
         //    1. 从节点列表计算出拖动部分
         //    2. 计算可以 drop 的节点，产生 drop 交互提示
         var TreeDragger = kity.createClass("TreeDragger", {
