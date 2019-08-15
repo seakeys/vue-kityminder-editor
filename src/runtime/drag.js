@@ -146,13 +146,6 @@ define(function(require, exports, module) {
             if (fsm.state() === 'drag') {
                 move(false);
                 return fsm.jump('normal', 'drag-finish');
-            }else if(fsm.state() === 'normal' && minder.getSelectedNode()) {
-                let svgBox = container.children[0].children[1].children[0]
-                setTimeout(() => {
-                    let svgHeight = svgBox.getBBox().height + 100
-                    container.style.height = svgHeight + 'px'
-                    svgBox.setAttribute("transform", `translate( 170 ${(svgHeight/2)} )`)
-                },600)
             }
         }, false);
     }

@@ -25,7 +25,7 @@ export default {
       rootData: {
         root: {},
         template: "right",
-        theme: "fresh-blue"
+        theme: "fresh-blue-compat" //fresh-blue-compat
       }
     };
   },
@@ -35,14 +35,34 @@ export default {
       this.minder = new Editor(getId).minder;
       this.rootData.root = this.importData;
       this.minder.importJson(this.rootData);
-      setTimeout(() => {
-        let svgBox = getId.children[0].children[1].children[0];
-        let svgHeight = svgBox.getBBox().height + 100;
-        getId.style.height = svgHeight + "px";
-        svgBox.setAttribute("transform", `translate( 170 ${svgHeight / 2} )`);
-      }, 600);
+      this.$emit("exportMinder", this.minder)
       this.minder.on("contentchange", e => {
         this.$emit("exportData", this.minder.exportJson().root, this.index);
+        setTimeout(() => {
+          let heightBox = this.minder._connectContainer.node.parentNode.getBBox().height + 13
+          this.minder.getPaper().setHeight(heightBox)
+          let getMax = []
+          this.minder.getAllNode().forEach (item => { getMax.push(item._globalLayoutTransform.m.f)})
+          getMax.sort((a,b) => { return a-b})
+          let getHeight = heightBox / 2
+          if (Math.abs(getMax[0]) > getMax[getMax.length-1]) { // 顶部太高
+              if (Math.abs(getMax[0]) > getHeight) {
+                  var dy = getHeight + ((Math.abs(getMax[0]) - getHeight)) + 15
+              } else if (Math.abs(getMax[0]) < getHeight) {
+                  var dy = getHeight + 5
+              }
+          } else if (Math.abs(getMax[0]) < getMax[getMax.length-1]) { // 底部太高 
+              if (Math.abs(getMax[getMax.length-1]) > getHeight) {
+                  var dy = getHeight - (Math.abs(getMax[getMax.length-1]) - getHeight) - 15
+              } else {
+                  var dy = getHeight - 5
+              }
+          } else { // 两边对称
+              var dy = getHeight
+          }
+          this.minder._connectContainer.node.parentNode.style.transition = 'all 0.1s' 
+          this.minder.getRenderContainer().setTranslate(new kity.Point(12, dy))
+      }, 300)
       });
     }
   }
@@ -50,22 +70,16 @@ export default {
 </script>
 <style lang="less" scoped>
 .minder-editor-container {
-  margin-right: 10px;
+  line-height: 32px;
+  font-size: 16px;
   .km-editor {
     transition: height 0.1s;
     -webkit-transition: height 0.1s;
     background: #fcfcfc !important;
   }
   .textAre {
-    padding-bottom: 20px;
     color: #333;
     background: #fcfcfc;
-    display: flex;
-    justify-content: center;
-    span {
-      padding: 0 145px;
-      text-align: left;
-    }
   }
 }
 </style>
