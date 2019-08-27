@@ -70,7 +70,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .minder-editor-container {
-  line-height: 32px;
   font-size: 16px;
   .km-editor {
     transition: height 0.1s;
@@ -78,6 +77,7 @@ export default {
     background: #fcfcfc !important;
   }
   .textAre {
+    line-height: 32px;
     color: #333;
     background: #fcfcfc;
   }

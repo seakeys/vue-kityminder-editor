@@ -3433,19 +3433,12 @@ _p[30] = {
                 // 在 readonly 模式下，只有 force 为 true 才能切换回来
                 if (this._status == "readonly" && !force) return this;
                 if (status != this._status) {
-                    this._rollbackStatus = this._status;
+                    // this._rollbackStatus = this._status;
                     this._status = status;
-                    this.fire("statuschange", {
-                        lastStatus: this._rollbackStatus,
-                        currentStatus: this._status
-                    });
-                    if (sf) {
-                        /* global console: true */
-                        console.log(window.event.type, this._rollbackStatus, "->", this._status);
-                        if (tf) {
-                            console.trace();
-                        }
-                    }
+                    // this.fire("statuschange", {
+                    //     lastStatus: this._rollbackStatus,
+                    //     currentStatus: this._status
+                    // });
                 }
                 return this;
             },
@@ -7559,18 +7552,18 @@ _p[62] = {
             _bind: function() {
                 var dragger = this, isTempDrag = false, lastPosition = null, currentPosition = null;
                 function dragEnd(e) {
-                    if (!lastPosition) return;
-                    lastPosition = null;
-                    e.stopPropagation();
+                    // if (!lastPosition) return;
+                    // lastPosition = null;
+                    // e.stopPropagation();
                     // 临时拖动需要还原状态
-                    if (isTempDrag) {
-                        dragger.setEnabled(false);
-                        isTempDrag = false;
-                        if (dragger._minder.getStatus() == "hand") dragger._minder.rollbackStatus();
-                    }
-                    var paper = dragger._minder.getPaper();
-                    paper.setStyle("cursor", dragger._minder.getStatus() == "hand" ? "-webkit-grab" : "default");
-                    dragger._minder.fire("viewchanged");
+                    // if (isTempDrag) {
+                    //     dragger.setEnabled(false);
+                    //     isTempDrag = false;
+                    //     if (dragger._minder.getStatus() == "hand") dragger._minder.rollbackStatus();
+                    // }
+                    // var paper = dragger._minder.getPaper();
+                    // paper.setStyle("cursor", dragger._minder.getStatus() == "hand" ? "-webkit-grab" : "default");
+                    // dragger._minder.fire("viewchanged");
                 }
                 this._minder.on("normal.mousedown normal.touchstart " + "inputready.mousedown inputready.touchstart " + "readonly.mousedown readonly.touchstart", function(e) {
                     if (e.originEvent.button == 2) {
@@ -7586,19 +7579,19 @@ _p[62] = {
                         e.preventDefault();
                     }
                     if (!isTempDrag) return;
-                    // var offset = kity.Vector.fromPoints(lastPosition, e.getPosition("view"));
-                    // if (offset.length() > 10) {
-                    //     this.setStatus("hand", true);
-                    //     var paper = dragger._minder.getPaper();
-                    //     paper.setStyle("cursor", "-webkit-grabbing");
-                    // }
+                    var offset = kity.Vector.fromPoints(lastPosition, e.getPosition("view"));
+                    if (offset.length() > 10) {
+                        this.setStatus("hand", true);
+                        // var paper = dragger._minder.getPaper();
+                        // paper.setStyle("cursor", "-webkit-grabbing");
+                    }
                 }).on("hand.beforemousedown hand.beforetouchstart", function(e) {
                     // 已经被用户打开拖放模式
                     if (dragger.isEnabled()) {
                         lastPosition = e.getPosition("view");
                         e.stopPropagation();
-                        var paper = dragger._minder.getPaper();
-                        paper.setStyle("cursor", "-webkit-grabbing");
+                        // var paper = dragger._minder.getPaper();
+                        // paper.setStyle("cursor", "-webkit-grabbing");
                     }
                 }).on("hand.beforemousemove hand.beforetouchmove", function(e) {
                     if (lastPosition) {
