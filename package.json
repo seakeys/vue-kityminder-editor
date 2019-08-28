@@ -1,6 +1,6 @@
 {
   "name": "vue-kityminder-editor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vue-kityminder-editor",
   "author": "chenhaifei <649719596@qq.com>",
   "private": false,
@@ -17,16 +17,11 @@
   "dependencies": {
     "core-js": "^2.4.1",
     "hotbox-ui": "^1.0.0",
-    "jspdf": "^1.5.3",
-    "kity": "^2.0.4",
-    "kityminder-core": "^1.4.50",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.3.2",
-    "qiniu": "^7.2.2",
-    "qiniu-js": "^2.5.4",
     "vue": "^2.6.10"
   },
   "devDependencies": {

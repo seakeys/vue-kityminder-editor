@@ -1,7 +1,6 @@
-import kity from 'kity';
-import kityminder from 'kityminder-core';
-import Editor from './components/editor';
-import './module/imageicon'
+import '../static/kity'
+import '../static/kityminder-core'
+import Editor from './components/editor'
 
 const MindEditor = {
   Minder: Editor
