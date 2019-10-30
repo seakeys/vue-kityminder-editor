@@ -1,10 +1,11 @@
 {
   "name": "vue-kityminder-editor",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "vue-kityminder-editor",
   "author": "chenhaifei <649719596@qq.com>",
   "private": false,
   "main": "src/index.js",
+  "license": "ISC",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

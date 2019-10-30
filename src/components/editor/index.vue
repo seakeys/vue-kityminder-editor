@@ -15,6 +15,13 @@
         default:() => {}
       }
     },
+    watch: {
+      importData (val) { // 监听异步数据
+        this.rootData.root = val
+        this.minder.importJson(this.rootData)
+        this.minder.execCommand('template', 'right')
+      }
+    },
     data() {
       return {
         minder: null,
@@ -49,24 +56,17 @@
 					'tianpan-compact': '紧凑天盘'
         },
         rootData:{
-          root:{},
-          template:'right',
-          theme:'fresh-blue'
+          root:{}
         },
       };
     },
     mounted() {
       const getId = document.getElementById('minder-editor')
-      this.minder = window.editor = new Editor(getId).minder;
+      this.minder = window.editor = new Editor(getId).minder
       this.rootData.root = this.importData
       this.minder.importJson(this.rootData)
+      this.minder.execCommand('template', 'right')
       this.$emit('minderHandle',this.minder)
-      this.minder.on('contentchange', (val) => {
-        this.$emit('exportData',this.importData)
-      })
     }
   }
 </script>
-<style lang="less" scoped>
-
-</style>
