@@ -1,3 +1,4 @@
+
 # vue-kityminder-editor
 
 ## use
@@ -9,3 +10,7 @@
 import kityminder from 'vue-kityminder-editor'
 
 Vue.use(kityminder)
+
+// this.KMEditor = new window.kityminder.Editor(document.querySelector('#minder-container'))
+// this.minder = this.KMEditor.minder
+// this.minder.importJson(this.minderData)

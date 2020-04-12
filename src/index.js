@@ -1,12 +1,10 @@
-import '../static/kity'
-import '../static/kityminder-core'
-import Editor from './components/editor'
+import Editor from './App.vue'
 
 const MindEditor = {
   Minder: Editor
 };
 
-const install = function(Vue, opts = {}) {
+const install = function(Vue) {
   Object.keys(MindEditor).forEach((key) => {
     Vue.component(key, MindEditor[key]);
   });
