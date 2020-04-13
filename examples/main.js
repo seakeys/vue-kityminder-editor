@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './index'
+import kityMinder from './../packages/kityMinder'
+Vue.use(kityMinder)
 
 Vue.config.productionTip = false
 

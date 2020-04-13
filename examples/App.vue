@@ -1,21 +1,15 @@
 <template>
   <div id="app">
-     <div id="minder-container"></div>
+    <kityMinder :importJson="importJson" @minder="minderHandle" />
   </div>
 </template>
 
 <script>
-import 'kity'
-import 'hotbox-ui'
-import 'hotbox-ui/hotbox.css'
-import 'kityminder-core'
-import './assets/kityminder.editor.css'
-import './assets/kityminder.editor.js'
 export default {
   name: 'app',
   data() {
     return {
-      minderData: { 
+      importJson: { 
           'data': { 'text': 'Design project', 'id': 2 },
           'children': [
               { 
@@ -44,11 +38,11 @@ export default {
     }
   },
   mounted() {
-    this.KMEditor = new window.kityminder.Editor(document.querySelector('#minder-container'))
-    this.minder = this.KMEditor.minder
-    this.minder.importJson(this.minderData)
-    // this.minder.execCommand('Theme', 'fresh-blue')
-    // console.log(this.minder)
+  },
+  methods: {
+    minderHandle (val) {
+      console.log(val)
+    }
   }
 }
 </script>
