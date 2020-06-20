@@ -1,3 +1,7 @@
+```
+npm i vue-kityminder-editor
+```
+
 ## main.js
 ```
 import 'vue-kityminder-editor/lib/kityMinder.css'
