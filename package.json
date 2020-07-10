@@ -5,6 +5,7 @@
   "description": "vue-kityminder-editor",
   "author": "chenhaifei <649719596@qq.com>",
   "main": "lib/kityMinder.umd.min.js",
+  "homepage": "https://SeakeyCode.github.io/vue-kityminder-editor",
   "license": "ISC",
   "scripts": {
     "serve": "vue-cli-service serve",
