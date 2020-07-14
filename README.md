@@ -20,10 +20,15 @@ Vue.use(kityMinder)
 ## 测试数据
 ```
 importJson: { 
-    'data': { 'text': 'Design project', 'id': 2 },
+    'data': { 
+      'id': 2,
+      'text': 'Design project',
+      'image': 'http://image.namedq.com/uploads/20191011/18/1570789062-WiOwJhGFDp.jpg',
+      'imageSize': { 'width': 200, 'height': 200 }
+    },
     'children': [
         { 
-            'data': { 'text': 'Designsy', 'id': 3 },
+            'data': { 'text': 'Designsy', 'priority': 1, 'id': 3 },
             'children': [
                 { 
                   'data': { 'text': 'Designsy', 'id': 4 },
@@ -39,10 +44,10 @@ importJson: {
                 { 'data': { 'text': 'Designsy', 'id': 84 } }
             ]
         },
-        { 'data': { 'text': 'Designsy', 'id': 9 } },
-        { 'data': { 'text': 'Designsy', 'id': 102 } },
-        { 'data': { 'text': 'Designsy', 'id': 113 } },
-        { 'data': { 'text': 'Designsy', 'id': 124 } }
+        { 'data': { 'text': 'Designsy', 'priority': 2, 'id': 9 } },
+        { 'data': { 'text': 'Designsy', 'priority': 3, 'id': 102 } },
+        { 'data': { 'text': 'Designsy', 'priority': 4, 'id': 113 } },
+        { 'data': { 'text': 'Designsy', 'priority': 5, 'id': 124 } }
     ]
 }
 ```
