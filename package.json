@@ -18,7 +18,7 @@
     "url": "https://github.com/SeakeyCode/vue-kityminder-editor.git"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^3.3.2",
     "css-loader": "^3.2.0",
     "hotbox-ui": "^1.0.0",
