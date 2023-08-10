@@ -1,23 +1,57 @@
-```
-npm i vue-kityminder-editor
-```
+# vue-kityminder-editor
 
-## main.js
-```
-import 'vue-kityminder-editor/lib/kityMinder.css'
-import kityMinder from 'vue-kityminder-editor'
+A Vue.js component for integrating KityMinder mind map editor.
 
-Vue.use(kityMinder)
+## Installation
+
+Install the package using npm:
 
 ```
-
-## 组件中使用
-
-```
-<kityMinder :importJson="importJson" @minder="minderHandle" />
+npm install vue-kityminder-editor
 ```
 
-## 测试数据
+## Usage in main.js
+
+Import the CSS and the vue-kityminder-editor component in your main.js file:
+
+```
+import 'vue-kityminder-editor/lib/kityMinder.css';
+import Vue from 'vue';
+import kityMinder from 'vue-kityminder-editor';
+
+Vue.use(kityMinder);
+
+```
+
+## Using the Component in Your Vue File
+
+In your Vue component, use the kityMinder component like this:
+
+```
+<template>
+  <kityMinder :importJson="importJson" @minder="minderHandle" />
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      importJson: {
+        // Your JSON data here
+      }
+    };
+  },
+  methods: {
+    minderHandle(minder) {
+      // Handle the minder event here
+    }
+  }
+};
+</script>
+```
+
+## Sample Test Data
+
 ```
 importJson: { 
     'data': { 
@@ -51,3 +85,5 @@ importJson: {
     ]
 }
 ```
+
+Feel free to replace the sample JSON data with your actual mind map data.
