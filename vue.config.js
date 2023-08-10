@@ -1,5 +1,6 @@
 module.exports = {
   publicPath:'./',
+  lintOnSave: false,
   pages: {
     index: {
       entry: 'examples/main.js',
